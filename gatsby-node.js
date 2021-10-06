@@ -8,9 +8,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
       gcms {
         products(stage: PUBLISHED) {
           id
-          name
           slug
-          price
         }
       }
     }
@@ -18,10 +16,10 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
 
   products.forEach(({ id, slug }) =>
     createPage({
-      path: `/products/%{slug}`,
+      path: `/products/${slug}`,
       component: require.resolve(`./src/templates/ProductPage.js`),
       context: {
-        id,
+        id
       },
     }),
   )

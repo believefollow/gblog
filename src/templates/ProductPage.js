@@ -3,9 +3,12 @@ import { graphql } from "gatsby";
 
 const ProductPage = ({
     data: {
-        gcms: {product},
+        gcms: { product },
     }
 }) => {
+    console.log(product);
+    return (
+
     <React.Fragment>
         <h1>{product.name}</h1>
         <p>{product.description}</p>
@@ -16,17 +19,18 @@ const ProductPage = ({
             }).format(product.price)}
         </p>
     </React.Fragment>
+    )
 }
 
 export const pageQuery = graphql`
     query ProductPageQuery($id:ID!) {
         gcms{
-        product(where: {id:$id}){
-            name
-            description
-            price
+            product(where: {id:$id}){
+                name
+                description
+                price
+            }
         }
-    }
     }
 `
 
